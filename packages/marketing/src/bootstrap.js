@@ -5,8 +5,16 @@ import App from './App';
 
 // Mount function to start up the app
 const mount = (el, { onNavigate, defaultHistory }) => {
+    // Create a memory history object
+    // If defaultHistory is provided, use it
     const history = defaultHistory || createMemoryHistory();
 
+    // Child to Container communication
+    // --------------------------------
+    // If there is a callback function onNavigate,
+    // call it whenever the history object changes
+    // listen will pass the location object to onNavigate
+    // the location object contains the pathname
     if (onNavigate) {
         history.listen(onNavigate);
     }
@@ -14,7 +22,13 @@ const mount = (el, { onNavigate, defaultHistory }) => {
     ReactDOM.render(<App history={history} />, el);
 
     return {
+        // Container to Child communication
+        // --------------------------------
+        // onParentNavigate is a callback function that is returned
+        // to the container app so that the container app can
+        // call it whenever the Container navigates
         onParentNavigate({ pathname: nextPathname }) {
+            console.log('Container just navigated: ', nextPathname);
             const { pathname } = history.location;
 
             if (pathname !== nextPathname) {
@@ -27,7 +41,7 @@ const mount = (el, { onNavigate, defaultHistory }) => {
 // If we are in development and in isolation,
 // call mount immediately
 if (process.env.NODE_ENV === "development") {
-    const devRoot = document.querySelector("#marketing-dev-root");
+    const devRoot = document.querySelector("#_marketing-dev-root");
 
     if (devRoot) {
         mount(devRoot, { defaultHistory: createBrowserHistory() });

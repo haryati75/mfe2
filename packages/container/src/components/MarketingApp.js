@@ -8,9 +8,16 @@ export default () => {
 
     useEffect(() => {
         const { onParentNavigate } = mount(ref.current, {
+            // onNavigate is a callback function that will be called
+            // whenever the MarketingApp navigates
+            // to a different route
             onNavigate: ({ pathname: nextPathname }) => {
+                console.log('Container noticed navigation in child marketing app: ', nextPathname);
                 const { pathname } = history.location;
 
+                // if the pathname of the MarketingApp is different
+                // from the pathname of the container app,
+                // navigate the container app to the pathname of the MarketingApp
                 if (pathname !== nextPathname) {
                     history.push(nextPathname);
                 }
