@@ -1,4 +1,4 @@
-import { mount } from 'marketing/MarketingApp';
+import { mount } from 'auth/AuthApp';
 import React, { useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -15,7 +15,7 @@ export default () => {
             // to a different route
             onNavigate: ({ pathname: nextPathname }) => {
                 const { pathname } = history.location;
-                console.log('container MarketingApp onNavigate: ', nextPathname);
+                console.log('container AuthApp onNavigate: ', nextPathname);
 
                 // if the pathname of the MarketingApp is different
                 // from the pathname of the container app,

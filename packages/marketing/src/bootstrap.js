@@ -4,10 +4,12 @@ import { createMemoryHistory, createBrowserHistory } from "history";
 import App from './App';
 
 // Mount function to start up the app
-const mount = (el, { onNavigate, defaultHistory }) => {
+const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
     // Create a memory history object
     // If defaultHistory is provided, use it
-    const history = defaultHistory || createMemoryHistory();
+    const history = defaultHistory || createMemoryHistory({
+        initialEntries: [initialPath]
+    });
 
     // Child to Container communication
     // --------------------------------
@@ -28,9 +30,8 @@ const mount = (el, { onNavigate, defaultHistory }) => {
         // to the container app so that the container app can
         // call it whenever the Container navigates
         onParentNavigate({ pathname: nextPathname }) {
-            console.log('Container just navigated: ', nextPathname);
             const { pathname } = history.location;
-
+            console.log('marketing bootstrap onParentNavigate: ', nextPathname);
             if (pathname !== nextPathname) {
                 history.push(nextPathname);
             }
