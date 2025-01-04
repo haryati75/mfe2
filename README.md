@@ -6,6 +6,8 @@ based on Stephen Grider's Udemy online course
 Uses Webpack Module Federation to create a microfrontend architecture. 
 React and Vue apps are configured manually.
 
+Note: if app fails to load, try refreshing the page with browser's cache disabled.
+
 ### Packages
 
 #####  Frontend modules:

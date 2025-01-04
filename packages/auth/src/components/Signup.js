@@ -57,7 +57,7 @@ export default function SignUp({ onSignIn }) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          MFE Sign up
         </Typography>
         <form
           onSubmit={(e) => e.preventDefault()}

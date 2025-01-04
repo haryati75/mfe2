@@ -79,7 +79,7 @@ export default function Header({ isSignedIn, onSignOut }) {
             component={RouterLink}
             to="/"
           >
-            App
+            MFE2 App on React v{React.version}
           </Typography>
           <Button
             color="primary"
